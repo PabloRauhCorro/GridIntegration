@@ -4,6 +4,11 @@ from GridIntegration import GridIntegration
 from written_grids.Lebedev_grid import lebedevdictionary
 from supplementary.coordinate_system_conversions import cartesian2spherical
 
+# used to calculate integrals of functions on the suface of the unit sphere. 
+# The functions need to have this shape: g(r,θ,φ) = sin(θ) * f(r,θ,φ)
+# ∫sinθ dθ ∫f(r,θ,φ) dφ = ∑ wi f(r, θi, φi) 
+# the integration ranges are: theta = [0, pi], phi = [0, 2pi]
+
 
 class LebedevAngularIntegration(GridIntegration):
 
