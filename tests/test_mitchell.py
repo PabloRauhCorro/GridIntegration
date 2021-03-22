@@ -1,6 +1,7 @@
 import sys, os
 import numpy as np
 from scipy.integrate import tplquad
+sys.path.append('..')
 sys.path.append(os.getcwd())
 from Mitchell import Mitchell_Integration
 
