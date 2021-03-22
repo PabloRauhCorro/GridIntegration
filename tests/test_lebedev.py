@@ -28,4 +28,4 @@ theta_range = [0.0, np.pi]
 phi_range = [0.0, 2*np.pi]
 print("Scipy dblquad:")
 print("Test integrand 0: " + str(integrate.dblquad(test_integrand0, phi_range[0], phi_range[1], lambda phi: theta_range[0], lambda phi: theta_range[1])[0]))
-print("Test integrand 0: " + str(integrate.dblquad(test_integrand1, phi_range[0], phi_range[1], lambda phi: theta_range[0], lambda phi: theta_range[1])[0]))
+print("Test integrand 1: " + str(integrate.dblquad(test_integrand1, phi_range[0], phi_range[1], lambda phi: theta_range[0], lambda phi: theta_range[1])[0]))

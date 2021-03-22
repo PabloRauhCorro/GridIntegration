@@ -5,15 +5,15 @@ from abc import ABC, abstractmethod
 class GridIntegration(ABC):
         
     @abstractmethod
-    def get_weights(self, dimension, integration_ranges):
+    def get_weights(self):
         pass
 
     @abstractmethod
-    def get_points(self, dimension, integration_ranges):
+    def get_points(self):
         pass
     
     @abstractmethod
-    def integrate_function(self, function, dimension, integration_ranges):
+    def integrate_function(self, function):
         pass
 
     
