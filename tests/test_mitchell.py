@@ -38,10 +38,10 @@ print("\n")
 
 # Calculate integral using Mitchell's simple grid
 mitchell_integration = Mitchell_Integration()
-
-TI1_mitchell = mitchell_integration.integrate_function(test_integrand1, 4608)
-TI2_mitchell = mitchell_integration.integrate_function(test_integrand2, 4608)
-print("Integration using Mitchell simple grid: ")
+num_points = 4608
+TI1_mitchell = mitchell_integration.integrate_function(test_integrand1, num_points)
+TI2_mitchell = mitchell_integration.integrate_function(test_integrand2, num_points)
+print(f"Integration using Mitchell simple grid with {num_points} gridpoints: ".format())
 
 print("Test Integrand 1: " + str(TI1_mitchell) + " - Deviation: " + str(100*(TI1-TI1_mitchell)/TI1) + "%")
 print("Test Integrand 2: " + str(TI2_mitchell) + " - Deviation: " + str(100*(TI2-TI2_mitchell)/TI2) + "%")
