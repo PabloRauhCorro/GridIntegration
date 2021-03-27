@@ -7,17 +7,13 @@ from Mitchell import Mitchell_Integration
 
 # test integrands
 
-def test_integrand1(alpha, beta, gamma, weighted = True):
-    if weighted:
-        return np.sin(beta) * np.cos(beta)**2
-    else:
-        return np.cos(beta)**2
-def test_integrand2(alpha, beta, gamma, weighted = True):
-    if weighted:
-        return  np.sin(beta) *  np.sin(alpha) * np.sin(gamma)
-    else:
-        return np.sin(alpha) * np.sin(gamma)
-
+def test_integrand1(alpha, beta, gamma, weighted = False):
+    function = np.cos(beta)**2
+    return function if not weighted else function * np.sin(beta)
+    
+def test_integrand2(alpha, beta, gamma, weighted = False):
+    function = np.sin(alpha) * np.sin(gamma)
+    return function if not weighted else function * np.sin(beta)
 
 # Integration with tplquad
 alpha_range = [0.0, 2*np.pi] 

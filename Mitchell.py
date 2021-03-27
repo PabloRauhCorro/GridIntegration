@@ -21,7 +21,7 @@ class Mitchell_Integration(GridIntegration):
         gridpoints = self.get_points(num_gridpoints)
         weight = self.get_weights(gridpoints.shape[0])
         alpha, beta, gamma = gridpoints[:,0], gridpoints[:,1], gridpoints[:,2]
-        return weight * np.sum(function(alpha, beta, gamma, weighted = False))
+        return weight * np.sum(function(alpha, beta, gamma))
 
     def calculate_resolution(self, num_gridpoints):
         resolutions = np.linspace(0,10,11)
