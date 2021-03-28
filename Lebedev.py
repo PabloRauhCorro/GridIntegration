@@ -14,6 +14,7 @@ class LebedevAngularIntegration(GridIntegration):
 
     def __init__(self):
         self.lebedev_grid = lebedevdictionary()
+        self.available_degrees = self.lebedev_grid.keys()
 
     def get_number_of_points(self, degree):
         return ceil(1/3 * (degree+1)**2)
@@ -25,6 +26,8 @@ class LebedevAngularIntegration(GridIntegration):
         return self.lebedev_grid[degree][:, 3]
 
     def integrate_function(self, function, degree):
+        while(degree not in self.available_degrees):
+            degree -= 1
         xyz_points = self.get_points(degree)
         weights = self.get_weights(degree)
         r, theta, phi = cartesian2spherical(xyz_points)
