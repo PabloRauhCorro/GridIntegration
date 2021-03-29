@@ -1,0 +1,7 @@
+Test integrand: f(α,β,ɣ) = P_vonmises(α)*P_vonmises(β)*P_vonmises(ɣ)
+
+num points    deviation in %
+75    45.569486761844296
+576    -29.857930964243447
+4608    -1.2391305280589127
+36864    0.35382664658045376

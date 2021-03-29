@@ -54,7 +54,7 @@ TI4 = integrate.dblquad(test_integrand4, phi_range[0], phi_range[1], lambda phi:
 
 
 #θ ξ φ
-# Compute integrals with Lebedev quadrature. The integration ranges are fixed to xi_range ad phi_range (I think)
+# Compute integrals with Lebedev quadrature. The integration ranges are fixed to xi_range and phi_range
 lebedevAngularIntegration = LebedevAngularIntegration()
 degree = 100
 TI0_lebedev = lebedevAngularIntegration.integrate_function(test_integrand0, degree)
@@ -83,11 +83,11 @@ print("Test integrand 4 : " + str(TI4))
 
 print()
 
-print(f"Lebedev with degree of exactness of {degree}: ")
-print("Test Integrand 0: " + str(TI0_lebedev) + " - Deviation: " + str(100*(TI0-TI0_lebedev)/TI0) + "%")
-print("Test Integrand 1: " + str(TI1_lebedev) + " - Deviation: " + str(100*(TI1-TI1_lebedev)/TI1) + "%")
-print("Test Integrand 2: " + str(TI2_lebedev) + " - Deviation: " + str(100*(TI2-TI2_lebedev)/TI2) + "%")
-print("Test Integrand 3: " + str(TI3_lebedev) + " - Deviation: " + str(100*(TI3-TI3_lebedev)/TI3) + "%")
-print("Test Integrand 4: " + str(TI4_lebedev) + " - Deviation: " + str(100*(TI4-TI4_lebedev)/TI4) + "%")
+print(f"Lebedev with {lebedevAngularIntegration.get_number_of_points(degree)} points: ")
+print("Test Integrand 0: " + str(TI0_lebedev) + " - Deviation: " + str(abs(100*(TI0-TI0_lebedev)/TI0)) + "%")
+print("Test Integrand 1: " + str(TI1_lebedev) + " - Deviation: " + str(abs(100*(TI1-TI1_lebedev)/TI1)) + "%")
+print("Test Integrand 2: " + str(TI2_lebedev) + " - Deviation: " + str(abs(100*(TI2-TI2_lebedev)/TI2)) + "%")
+print("Test Integrand 3: " + str(TI3_lebedev) + " - Deviation: " + str(abs(100*(TI3-TI3_lebedev)/TI3)) + "%")
+print("Test Integrand 4: " + str(TI4_lebedev) + " - Deviation: " + str(abs(100*(TI4-TI4_lebedev)/TI4)) + "%")
 
 

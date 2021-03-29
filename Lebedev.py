@@ -17,6 +17,8 @@ class LebedevAngularIntegration(GridIntegration):
         self.available_degrees = self.lebedev_grid.keys()
 
     def get_number_of_points(self, degree):
+        while(degree not in self.available_degrees):
+            degree -= 1
         return ceil(1/3 * (degree+1)**2)
 
     def get_points(self, degree):

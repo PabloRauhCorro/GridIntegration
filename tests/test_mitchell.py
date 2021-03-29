@@ -60,7 +60,9 @@ TI3_mitchell = mitchell_integration.integrate_function(test_integrand3, num_poin
 # Display results 
 print("Test functions without factor sin(β)")
 print("Test Integrand 0: f(α,β,ɣ) = cos(β)²")
-print("Test Integrand 1: f(α,β,ɣ) = sin(α)² * sin(β)")
+print("Test Integrand 1: f(α,β,ɣ) = sin(α)+sin(β)+sin(ɣ)")
+print("Test Integrand 2: f(α,β,ɣ) = sin(α)² * sin(β)")
+print("Test Integrand 3: f(α,β,ɣ) = P_vonmises(α)*P_vonmises(β)*P_vonmises(ɣ)")
 
 print()
 
@@ -73,10 +75,10 @@ print("Test Integrand 3: " +  str(TI3))
 print()
 
 print(f"Integration using Mitchell simple grid with {num_points} gridpoints: ")
-print("Test Integrand 0: " + str(TI0_mitchell) + " - Deviation: " + str(100*(TI0-TI0_mitchell)/TI0) + "%")
-print("Test Integrand 1: " + str(TI1_mitchell) + " - Deviation: " + str(100*(TI1-TI1_mitchell)/TI1) + "%")
-print("Test Integrand 2: " + str(TI2_mitchell) + " - Deviation: " + str(100*(TI2-TI2_mitchell)/TI2) + "%")
-print("Test Integrand 3: " + str(TI3_mitchell) + " - Deviation: " + str(100*(TI3-TI3_mitchell)/TI3) + "%")
+print("Test Integrand 0: " + str(TI0_mitchell) + " - Deviation: " + str(abs(100*(TI0-TI0_mitchell)/TI0)) + "%")
+print("Test Integrand 1: " + str(TI1_mitchell) + " - Deviation: " + str(abs(100*(TI1-TI1_mitchell)/TI1)) + "%")
+print("Test Integrand 2: " + str(TI2_mitchell) + " - Deviation: " + str(abs(100*(TI2-TI2_mitchell)/TI2)) + "%")
+print("Test Integrand 3: " + str(TI3_mitchell) + " - Deviation: " + str(abs(100*(TI3-TI3_mitchell)/TI3)) + "%")
 print()
 
 
