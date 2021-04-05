@@ -67,6 +67,6 @@ num_points_deviation_dicts.append(deviation_all_degrees(test_integrand1))
 num_points_deviation_dicts.append(deviation_all_degrees(test_integrand2))
 num_points_deviation_dicts.append(deviation_all_degrees(test_integrand3))
 function_labels = ["f(ξ,φ) = Pn(ξ) * Pn(φ), μ=45° σ=10°", "f(x,y,z) = exp(-z²)", "f(x,y,z) = x² + y² +z²", "f(ξ,φ) = 1 if 0<ξ<π/4 else 0"]
-write_to_file("tests/num_points_vs_deviation/lebedev.txt", num_points_deviation_dicts, function_labels)
+write_to_file("tests/num_points_vs_deviation/results/lebedev.txt", num_points_deviation_dicts, function_labels)
 description = "Test functions were integrated on the unit sphere using Lebedev grids of different sizes.\nReference values: results of scipy quadrature."
 plot_results(num_points_deviation_dicts, function_labels, description)
