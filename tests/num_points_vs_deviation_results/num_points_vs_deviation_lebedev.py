@@ -45,11 +45,15 @@ def write_to_file(filename, num_points_deviation_dict):
             file.write(str(num_points)+"    "+str(deviation)+"\n")
 
 def plot_results(results_dict):
-    fig = plt.figure()
-    axes = fig.add_subplot()
-    axes.set_ylabel('deviation')
-    axes.set_xlabel('number of gridpoints')
-    plt.plot(num_points_deviation_dict.keys(), num_points_deviation_dict.values(), marker = ".")
+    figure, axis = plt.subplots(1, 2)
+    axis[0].set_ylabel('deviation')
+    axis[0].set_xlabel('number of gridpoints')
+    axis[0].plot(num_points_deviation_dict.keys(), num_points_deviation_dict.values(), marker = ".")
+    y = np.log10(list(num_points_deviation_dict.values()))
+    axis[1].set_ylabel('lg(deviation)')
+    axis[1].set_xlabel('number of gridpoints')
+    axis[1].plot(num_points_deviation_dict.keys(), y, marker =".")
+    plt.legend("f(ξ,φ) = Pn(ξ) * Pn(φ)")
     plt.show()
 
 num_points_deviation_dict = deviation_all_degrees(test_integrand4)
