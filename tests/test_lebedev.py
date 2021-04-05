@@ -29,10 +29,10 @@ def test_integrand2(xi, phi, weighted = False):
     return function if not weighted else function * np.sin(xi)
 
 
-# f(xi, phi) = Pgauss(xi)*Pgauss(phi) = 1/2pi * exp(-1/2 (xi² + phi²)) 
+# f(xi, phi) = Puni(xi)
 def test_integrand3(xi, phi, weighted = False):
-    function = 1/(2*np.pi) * np.exp(-1/2 * ((xi**2) + (phi**2)))
-    return function if not weighted else function * np.sin(xi)
+    function = (np.array(xi<0.7) * np.array(xi>0.3)).astype(int)
+    return function if not weighted else int(xi<0.7 and xi>0.3) * np.sin(xi)
 
 # f(xi, phi) = Pvon_mises(xi) * P_von_mises(phi)
 def test_integrand4(xi, phi, weighted=False):
@@ -69,7 +69,7 @@ print("Test functions without factor sin(ξ)")
 print("Test integrand 0 : f(x,y,z) = x² ")
 print("Test integrand 1 : f(x,y,z) = exp(-z²) ")
 print("Test integrand 2 : f(x,y,z) = x² + y² +z² ")
-print("Test integrand 3 : f(ξ,φ) = P_gauss(ξ) * P_gauss(φ)")
+print("Test integrand 3 : f(ξ,φ) = P_uni(xi))")
 print("Test integrand 4 : f(ξ,φ) = P_vonmises(ξ) * P_vonmises(φ)")
 
 print()
