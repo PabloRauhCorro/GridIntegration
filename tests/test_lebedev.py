@@ -56,12 +56,12 @@ TI4 = integrate.dblquad(test_integrand4, phi_range[0], phi_range[1], lambda phi:
 #θ ξ φ
 # Compute integrals with Lebedev quadrature. The integration ranges are fixed to xi_range and phi_range
 lebedevAngularIntegration = LebedevAngularIntegration()
-degree = 100
-TI0_lebedev = lebedevAngularIntegration.integrate_function(test_integrand0, degree)
-TI1_lebedev = lebedevAngularIntegration.integrate_function(test_integrand1, degree)
-TI2_lebedev = lebedevAngularIntegration.integrate_function(test_integrand2, degree)
-TI3_lebedev = lebedevAngularIntegration.integrate_function(test_integrand3, degree)
-TI4_lebedev = lebedevAngularIntegration.integrate_function(test_integrand4, degree)
+num_points = 972
+TI0_lebedev = lebedevAngularIntegration.integrate_function(test_integrand0, num_points)
+TI1_lebedev = lebedevAngularIntegration.integrate_function(test_integrand1, num_points)
+TI2_lebedev = lebedevAngularIntegration.integrate_function(test_integrand2, num_points)
+TI3_lebedev = lebedevAngularIntegration.integrate_function(test_integrand3, num_points)
+TI4_lebedev = lebedevAngularIntegration.integrate_function(test_integrand4, num_points)
 
 
 # Display results
@@ -83,7 +83,7 @@ print("Test integrand 4 : " + str(TI4))
 
 print()
 
-print(f"Lebedev with {lebedevAngularIntegration.get_number_of_points(degree)} points: ")
+print(f"Lebedev with {num_points} points: ")
 print("Test Integrand 0: " + str(TI0_lebedev) + " - Deviation: " + str(abs(100*(TI0-TI0_lebedev)/TI0)) + "%")
 print("Test Integrand 1: " + str(TI1_lebedev) + " - Deviation: " + str(abs(100*(TI1-TI1_lebedev)/TI1)) + "%")
 print("Test Integrand 2: " + str(TI2_lebedev) + " - Deviation: " + str(abs(100*(TI2-TI2_lebedev)/TI2)) + "%")

@@ -19,7 +19,7 @@ def test_integrand1(alpha, beta, gamma, weighted = False):
     return function if not weighted else function * np.sin(beta)
 
 def test_integrand2(alpha, beta, gamma, weighted = False):
-    function = np.sin(alpha)**2 * np.sin(beta)
+    function = np.exp(-alpha)*np.sin(alpha) * np.sin(beta)
     return function if not weighted else function * np.sin(beta)
 
 def test_integrand3(alpha, beta, gamma, weighted = False):
@@ -41,9 +41,9 @@ alpha_range = [0.0, 2*np.pi]
 beta_range = [0.0, np.pi]
 gamma_range = [0.0, 2*np.pi]
 TI0 = tplquad(test_integrand0, gamma_range[0], gamma_range[1], lambda gamma: beta_range[0], lambda gamma: beta_range[1], 
-            lambda gamma, beta: alpha_range[0], lambda gamma, beta: alpha_range[1], args=(True,) )[0]             
+            lambda gamma, beta: alpha_range[0], lambda gamma, beta: alpha_range[1], args=(True,) )[0]          
 TI1 = tplquad(test_integrand1, gamma_range[0], gamma_range[1], lambda gamma: beta_range[0], lambda gamma: beta_range[1], 
-			lambda gamma, beta: alpha_range[0], lambda gamma, beta: alpha_range[1], args=(True,))[0]
+			lambda gamma, beta: alpha_range[0], lambda gamma, beta: alpha_range[1], args=(True,))[0] 
 TI2 = tplquad(test_integrand2, gamma_range[0], gamma_range[1], lambda gamma: beta_range[0], lambda gamma: beta_range[1], 
 			lambda gamma, beta: alpha_range[0], lambda gamma, beta: alpha_range[1], args=(True,))[0]
 TI3 = tplquad(test_integrand3, gamma_range[0], gamma_range[1], lambda gamma: beta_range[0], lambda gamma: beta_range[1], 
@@ -61,7 +61,7 @@ TI3_mitchell = mitchell_integration.integrate_function(test_integrand3, num_poin
 print("Test functions without factor sin(β)")
 print("Test Integrand 0: f(α,β,ɣ) = cos(β)²")
 print("Test Integrand 1: f(α,β,ɣ) = sin(α)+sin(β)+sin(ɣ)")
-print("Test Integrand 2: f(α,β,ɣ) = sin(α)² * sin(β)")
+print("Test Integrand 2: f(α,β,ɣ) = exp(α)sin(α)sin(β)")
 print("Test Integrand 3: f(α,β,ɣ) = P_vonmises(α)*P_vonmises(β)*P_vonmises(ɣ)")
 
 print()

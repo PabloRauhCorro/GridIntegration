@@ -46,22 +46,23 @@ def deviation_all_degrees(integrand):
     num_points_deviation_dict = {}
     TI = scipy_result(integrand)
     # calculate the deviation of the integral for all available degrees
-    for degree in lebedevAngularIntegration.available_degrees:
-        num_gridpoints = lebedevAngularIntegration.get_number_of_points(degree)
-        if num_gridpoints > 1000:
+    available_num_points = lebedevAngularIntegration.numpoints_degree_dict.keys()
+    for num_points in available_num_points:
+        if num_points > 1000:
             break
-        TI_lebedev = lebedevAngularIntegration.integrate_function(integrand, degree)
+        TI_lebedev = lebedevAngularIntegration.integrate_function(integrand, num_points)
         # calculate the deviation in per cent
         deviation = abs(100*(TI-TI_lebedev)/TI)
         # add result to dictionary
-        num_points_deviation_dict[num_gridpoints] = deviation
+        num_points_deviation_dict[num_points] = deviation
     return num_points_deviation_dict
 
 
 
 num_points_deviation_dicts = []
 ti0 = deviation_all_degrees(test_integrand0)
-ti0.pop(12)
+# remove outlier
+ti0.pop(14)
 num_points_deviation_dicts.append(ti0)
 num_points_deviation_dicts.append(deviation_all_degrees(test_integrand1))
 num_points_deviation_dicts.append(deviation_all_degrees(test_integrand2))

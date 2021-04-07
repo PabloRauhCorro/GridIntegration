@@ -10,25 +10,27 @@ class Mitchell_Integration(GridIntegration):
         filename = "written_grids/mitchell/simple_grid_%s.qua" % str(resolution)
         quat = np.loadtxt(filename)
         RO1 = Rotation.from_quat(quat)
-        gridpoints = RO1.as_euler('zxz', degrees=False)
-        gridpoints = self.format_angles(gridpoints)
-        return gridpoints
+        points = RO1.as_euler('zxz', degrees=False)
+        points = self.format_angles(points)
+        return points
     
     def get_weights(self, num_gridpoints):
         return (8 * np.pi *np.pi)/num_gridpoints
-    
-    def integrate_function(self, function, num_gridpoints):
+
+    def get_grid(self, function, num_gridpoints):
         gridpoints = self.get_points(num_gridpoints)
         weight = self.get_weights(gridpoints.shape[0])
         alpha, beta, gamma = gridpoints[:,0], gridpoints[:,1], gridpoints[:,2]
-        return weight * np.sum(function(alpha, beta, gamma))
+        return weight * function(alpha, beta, gamma)
+
+    def integrate_function(self, function, num_gridpoints):
+        return np.sum(self.get_grid(function, num_gridpoints))
 
     def calculate_resolution(self, num_gridpoints):
         resolutions = np.linspace(0,10,11)
         ngps = 12 * 6 * 2**(3*resolutions)
         idx = self.find_nearest(ngps, num_gridpoints)
         return [idx, ngps[idx]]
-        
 
     def find_nearest(self, array, value):
         array = np.asarray(array)

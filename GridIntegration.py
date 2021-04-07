@@ -13,6 +13,10 @@ class GridIntegration(ABC):
         pass
     
     @abstractmethod
+    def get_grid(self):
+        pass
+    
+    @abstractmethod
     def integrate_function(self, function):
         pass
 
