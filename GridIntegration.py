@@ -13,7 +13,7 @@ class GridIntegration(ABC):
         pass
     
     @abstractmethod
-    def get_grid(self):
+    def get_weighted_summands(self):
         pass
     
     @abstractmethod

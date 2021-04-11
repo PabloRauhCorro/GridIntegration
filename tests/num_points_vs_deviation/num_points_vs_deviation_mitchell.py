@@ -62,7 +62,7 @@ num_points_deviation_dicts.append(deviation_all_degrees(test_integrand0))
 num_points_deviation_dicts.append(deviation_all_degrees(test_integrand1))
 num_points_deviation_dicts.append(deviation_all_degrees(test_integrand2))
 num_points_deviation_dicts.append(deviation_all_degrees(test_integrand3))
-function_labels = ["f(x) = cos²(β)*sin(β)", "f(x) = (sin(α)+sin(β)+sin(ɣ))*sin(β)", "f(x) = exp(α)sin(α)sin(β)", "f(x) = Pn(α)Pn(β)Pn(ɣ)sin(β), μ=30° σ=10°"]
+function_labels = ["f(α,β,ɣ) = cos²(β)*sin(β)", "f(α,β,ɣ) = (sin(α)+sin(β)+sin(ɣ))*sin(β)", "f(α,β,ɣ) = exp(α)sin(α)sin(β)", "f(α,β,ɣ) = Pn(α)Pn(β)Pn(ɣ)sin(β), μ=30° σ=10°"]
 write_to_file("tests/num_points_vs_deviation/results/mitchell.txt", num_points_deviation_dicts, function_labels)
 description = "Test functions were integrated on the intervals α=[0, 2π], β=[0, π], ɣ=[0, 2π]  using Mitchell grids of different sizes."
 description += "\n\nReference values: results of scipy quadrature."

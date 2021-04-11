@@ -15,7 +15,7 @@ from supplementary.deg2rad import deg2rad
 # test functions
 # f(x,y,z) = x²
 def test_integrand0(xi, phi, weighted = False):
-    function = (np.sin(xi) * np.cos(phi))**2
+    function = np.sin(xi)
     return function if not weighted else function * np.sin(xi)
 
 # f(x,y,z) = exp(-z²)
@@ -66,7 +66,7 @@ TI4_lebedev = lebedevAngularIntegration.integrate_function(test_integrand4, num_
 
 # Display results
 print("Test functions without factor sin(ξ)")
-print("Test integrand 0 : f(x,y,z) = x² ")
+print("Test integrand 0 : f(x,y,z) = sin(ξ) ")
 print("Test integrand 1 : f(x,y,z) = exp(-z²) ")
 print("Test integrand 2 : f(x,y,z) = x² + y² +z² ")
 print("Test integrand 3 : f(ξ,φ) = P_uni(xi))")

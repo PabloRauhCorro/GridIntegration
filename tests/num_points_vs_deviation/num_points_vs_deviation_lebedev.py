@@ -27,8 +27,12 @@ def test_integrand2(xi, phi, weighted = False):
     function = (np.sin(xi) * np.cos(phi))**2 + (np.sin(xi)*np.sin(phi))**2 + np.cos(xi)**2
     return function if not weighted else function * np.sin(xi)
 
-# f(xi, phi) = P_uni(xi)
 def test_integrand3(xi, phi, weighted = False):
+    function = np.sin(xi)
+    return function if not weighted else function * np.sin(xi)
+
+
+def test_integrand4(xi, phi, weighted = False):
     function = (np.array(xi>0)* np.array(xi<np.pi/4)).astype(int)
     return function if not weighted else int(xi>0 and xi<np.pi/4) * np.sin(xi)
 
@@ -67,7 +71,8 @@ num_points_deviation_dicts.append(ti0)
 num_points_deviation_dicts.append(deviation_all_degrees(test_integrand1))
 num_points_deviation_dicts.append(deviation_all_degrees(test_integrand2))
 num_points_deviation_dicts.append(deviation_all_degrees(test_integrand3))
-function_labels = ["f(ξ,φ) = Pn(ξ) * Pn(φ), μ=45° σ=10°", "f(x,y,z) = exp(-z²)", "f(x,y,z) = x² + y² +z²", "f(ξ,φ) = 1 if 0<ξ<π/4 else 0"]
+num_points_deviation_dicts.append(deviation_all_degrees(test_integrand4))
+function_labels = ["f(ξ,φ) = Pn(ξ) * Pn(φ), μ=45° σ=10°", "f(x,y,z) = exp(-z²)", "f(x,y,z) = x² + y² +z²", "f(ξ,φ) = sin(ξ)","f(ξ,φ) = 1 if 0<ξ<π/4 else 0"]
 write_to_file("tests/num_points_vs_deviation/results/lebedev.txt", num_points_deviation_dicts, function_labels)
 description = "Test functions were integrated on the unit sphere using Lebedev grids of different sizes.\nReference values: results of scipy quadrature."
 plot_results(num_points_deviation_dicts, function_labels, description)

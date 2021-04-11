@@ -7,10 +7,8 @@ def plot_results(results_dicts, function_labels, description):
     axis1 = fig.add_subplot(121)
     axis1.set_ylabel('deviation in %')
     axis1.set_xlabel('number of gridpoints')
-    axis1.plot(results_dicts[0].keys(), results_dicts[0].values(), marker =".",label = function_labels[0])
-    axis1.plot(results_dicts[1].keys(), results_dicts[1].values(), marker =".",label = function_labels[1])
-    axis1.plot(results_dicts[2].keys(),results_dicts[2].values(), marker =".",label = function_labels[2])
-    axis1.plot(results_dicts[3].keys(), results_dicts[3].values(), marker =".",label = function_labels[3])
+    for i in range(len(function_labels)):
+        axis1.plot(results_dicts[i].keys(), results_dicts[i].values(), marker =".",label = function_labels[i])
     axis1.legend() 
 
     axis2 = fig.add_subplot(122)
@@ -18,13 +16,7 @@ def plot_results(results_dicts, function_labels, description):
     axis2.set_xlabel('number of gridpoints')
     axis2.set_yscale("log")
     axis2.set_ylim(10**-4, 1)
-    # = np.log10(list(results_dicts[0].values()))
-    axis2.plot(results_dicts[0].keys(), 1/100*np.array(list(results_dicts[0].values())), marker =".",label = function_labels[0])
-    #y = np.log10(list(results_dicts[1].values()))
-    axis2.plot(results_dicts[1].keys(), 1/100*np.array(list(results_dicts[1].values())), marker =".",label = function_labels[1])
-    #y = np.log10(list(results_dicts[2].values()))
-    axis2.plot(results_dicts[2].keys(), 1/100*np.array(list(results_dicts[2].values())), marker =".",label = function_labels[2])
-    #y = np.log10(list(results_dicts[3].values()))
-    axis2.plot(results_dicts[3].keys(), 1/100*np.array(list(results_dicts[3].values())), marker =".",label = function_labels[3])
+    for i in range(len(function_labels)):
+        axis2.plot(results_dicts[i].keys(), 1/100*np.array(list(results_dicts[i].values())), marker =".",label = function_labels[i])
     axis2.legend()
     plt.show()

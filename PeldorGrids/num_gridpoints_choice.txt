@@ -1,0 +1,25 @@
+
+The current choice of number of gridpoints and a short justification for each number. Naming conventions of the grids (L,N,M..) from osPDSFit_math.docx
+
+
+
+-------------------------
+L = 38
+Integration of f(ξ,φ) = sin(ξ) with Lebedev using 38 gridpoints resulted in a deviation of ~0.1%.
+
+-------------------------
+N = 7
+The function f(r) = exp(-r²/2) is similar to Pgauss(r). Integration with Gauss Laguerre using 7 gridpoints resulted in a deviation of ~0.02%.
+
+-------------------------
+M = 230
+Integration of f(ξ,φ) = Pvonmises(ξ)Pvonmises(φ), μ=45° σ=10° with Lebedev using 230 gridpoints resulted in a deviation of ~0.5%.
+
+-------------------------
+
+K = 4608
+Integration of f(α,β,ɣ) = Pvonmises(α)Pvonmises(β)Pconmises(ɣ)sin(β), μ=30° σ=10° with Mitchell using 4608 gridpoints resulted in a deviation of ~1.2%
+-------------------------
+
+J = 7
+See N

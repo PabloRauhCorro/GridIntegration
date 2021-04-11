@@ -25,7 +25,7 @@ class LebedevAngularIntegration(GridIntegration):
     def find_nearest(self, target):
         return min(self.numpoints_degree_dict.keys(), key = lambda num_point: abs(num_point-target))
 
-    def get_grid(self, function, num_gridpoints):
+    def get_weighted_summands(self, function, num_gridpoints):
         num_gridpoints = self.find_nearest(num_gridpoints)
         degree = self.numpoints_degree_dict[num_gridpoints]
         xyz_points = self.get_points(degree)
@@ -34,6 +34,6 @@ class LebedevAngularIntegration(GridIntegration):
         return weights*function(theta, phi)
 
     def integrate_function(self, function, num_gridpoints):
-        return np.sum(self.get_grid( function, num_gridpoints))
+        return np.sum(self.get_weighted_summands( function, num_gridpoints))
 
     

@@ -17,14 +17,14 @@ class Mitchell_Integration(GridIntegration):
     def get_weights(self, num_gridpoints):
         return (8 * np.pi *np.pi)/num_gridpoints
 
-    def get_grid(self, function, num_gridpoints):
+    def get_weighted_summands(self, function, num_gridpoints):
         gridpoints = self.get_points(num_gridpoints)
         weight = self.get_weights(gridpoints.shape[0])
         alpha, beta, gamma = gridpoints[:,0], gridpoints[:,1], gridpoints[:,2]
         return weight * function(alpha, beta, gamma)
 
     def integrate_function(self, function, num_gridpoints):
-        return np.sum(self.get_grid(function, num_gridpoints))
+        return np.sum(self.get_weighted_summands(function, num_gridpoints))
 
     def calculate_resolution(self, num_gridpoints):
         resolutions = np.linspace(0,10,11)

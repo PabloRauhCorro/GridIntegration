@@ -19,10 +19,10 @@ class Gauss_Legendre(GridIntegration):
         points = (upper_bound-lower_bound)/2 * points + (upper_bound+lower_bound)/2
         return points
 
-    def get_grid(self, function, num_points, lower_bound, upper_bound):
+    def get_weighted_summands(self, function, num_points, lower_bound, upper_bound):
         weights = self.get_weights(num_points, lower_bound, upper_bound)
         points = self.get_points(num_points, lower_bound, upper_bound)
-        return weights * points
+        return weights * function(points)
 
     def integrate_function(self, function, num_points, lower_bound, upper_bound):
-        return np.sum(self.get_grid(function, num_points, lower_bound, upper_bound))
+        return np.sum(self.get_weighted_summands(function, num_points, lower_bound, upper_bound))

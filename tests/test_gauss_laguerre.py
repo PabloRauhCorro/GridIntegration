@@ -24,9 +24,9 @@ TI1 = integrate.quad(test_integrand1, 0, np.inf)[0]
 TI2 = integrate.quad(test_integrand2, 0, np.inf)[0]
 TI3 = integrate.quad(test_integrand3, 0, np.inf)[0]
 
-# compute integrals with gauss legendre quadrature
+# compute integrals with gauss laguerre quadrature
 gauss_lag = GaussLaguerre()
-number_of_points = 6
+number_of_points = 20
 TI0_gauss_lag = gauss_lag.integrate_function(test_integrand0, number_of_points)
 TI1_gauss_lag = gauss_lag.integrate_function(test_integrand1, number_of_points)
 TI2_gauss_lag = gauss_lag.integrate_function(test_integrand2, number_of_points)
@@ -44,7 +44,7 @@ print("Test Integrand 1: " + str(TI1))
 print("Test Integrand 2: " + str(TI2))
 print("Test Integrand 3: " + str(TI3))
 
-print(f"\nGauss Legendre with {number_of_points} points: ")
+print(f"\nGauss Laguerre with {number_of_points} points: ")
 print("Test Integrand 0: " + str(TI0_gauss_lag)+ " - Deviation: " + str(abs(100*(TI0-TI0_gauss_lag)/TI0)) + "%")
 print("Test Integrand 1: " + str(TI1_gauss_lag)+ " - Deviation: " + str(abs(100*(TI1-TI1_gauss_lag)/TI1)) + "%")
 print("Test Integrand 2: " + str(TI2_gauss_lag)+ " - Deviation: " + str(abs(100*(TI2-TI2_gauss_lag)/TI2)) + "%")
