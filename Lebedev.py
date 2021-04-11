@@ -16,20 +16,30 @@ class LebedevAngularIntegration(GridIntegration):
         self.lebedev_grid = lebedevdictionary()
         self.numpoints_degree_dict = lebedev_numpoints_degree()
 
-    def get_points(self, degree):
+    def get_points(self, num_gridpoints):
+        degree = self.degree_from_num_gridpoints(num_gridpoints)
         return self.lebedev_grid[degree][:, 0:3]
+    
+    def get_points_spherical(self, num_gridpoints):
+        xyz_points = self.get_points(num_gridpoints)
+        r, theta, phi = cartesian2spherical(xyz_points)
+        return np.vstack((theta, phi))
 
-    def get_weights(self, degree):
+    def get_weights(self, num_gridpoints):
+        degree = self.degree_from_num_gridpoints(num_gridpoints)
         return self.lebedev_grid[degree][:, 3]
 
     def find_nearest(self, target):
         return min(self.numpoints_degree_dict.keys(), key = lambda num_point: abs(num_point-target))
 
-    def get_weighted_summands(self, function, num_gridpoints):
+    def degree_from_num_gridpoints(self, num_gridpoints):
         num_gridpoints = self.find_nearest(num_gridpoints)
         degree = self.numpoints_degree_dict[num_gridpoints]
-        xyz_points = self.get_points(degree)
-        weights = self.get_weights(degree)
+        return degree
+
+    def get_weighted_summands(self, function, num_gridpoints):
+        xyz_points = self.get_points(num_gridpoints)
+        weights = self.get_weights(num_gridpoints)
         r, theta, phi = cartesian2spherical(xyz_points)
         return weights*function(theta, phi)
 

@@ -1,27 +1,14 @@
-from operator import imod
+
 import numpy as np
-from numpy.lib.function_base import vectorize
-import scipy
-from scipy.integrate import quad
-from scipy.stats import norm
+from functools import partial
 from supplementary.von_mises_distribution import von_mises_distr
 
 # test distributions with test parameters for prototyping
 
 
-def Pn(x, mu, sigma):
-    return 1/(np.sqrt(2*np.pi*sigma**2)) * np.exp(-(x-mu)**2 / (2*sigma**2))
+def Pn(x, mean, sigma):
+    return 1/(np.sqrt(2*np.pi*sigma**2)) * np.exp(-(x-mean)**2 / (2*sigma**2))
 
-
-distributions = {}
-distributions['xi_field'] = lambda xi: np.sin(xi)
-distributions['r'] = Pn
-distributions['xi'] = von_mises_distr
-distributions['phi'] = von_mises_distr
-distributions['alpha'] = von_mises_distr
-distributions['beta'] = von_mises_distr
-distributions['gamma'] = von_mises_distr
-distributions['J'] = Pn
 
 parameters = {}
 parameters["r_mean"] = 1.94
@@ -39,3 +26,15 @@ parameters["gamma_width"] = 20.0
 parameters["rel_prob"] = 1.0
 parameters["j_mean"] = 0.0
 parameters["j_width"] = 0.0
+
+
+distributions = {}
+distributions['xi_field'] = lambda xi, phi: np.sin(xi)
+distributions['r'] = Pn
+distributions['xi'] = von_mises_distr
+distributions['phi'] = von_mises_distr
+distributions['alpha'] = von_mises_distr
+distributions['beta'] = von_mises_distr
+distributions['gamma'] = von_mises_distr
+distributions['J'] = Pn
+
