@@ -5,7 +5,7 @@ from scipy.integrate import tplquad
 sys.path.append('..')
 sys.path.append(os.getcwd())
 from Mitchell import Mitchell_Integration
-from supplementary.von_mises_distribution import von_mises_distr
+from supplementary.distributions import von_mises_distr
 from supplementary.deg2rad import deg2rad
 
 # test integrands

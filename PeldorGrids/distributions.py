@@ -1,13 +1,32 @@
 
 import numpy as np
 from functools import partial
-from supplementary.von_mises_distribution import von_mises_distr
+from scipy.special import i0
+
 
 # test distributions with test parameters for prototyping
 
 
-def Pn(x, mean, sigma):
-    return 1/(np.sqrt(2*np.pi*sigma**2)) * np.exp(-(x-mean)**2 / (2*sigma**2))
+def Pn(x, mean, width):
+    if width == 0:
+        return np.where(x == mean, 1.0, 0.0)
+    else:
+        return np.exp(-0.5 * ((x - mean)/width)**2) / (np.sqrt(2*np.pi) * width)
+
+
+
+def von_mises_distr(x, mean, width):
+    if width == 0:
+        return np.where(x == mean, 1.0, 0.0)
+    else:
+        kappa =  1 / width**2
+        if np.isfinite(i0(kappa)):
+            return np.exp(kappa * np.cos(x - mean)) / (2*np.pi * i0(kappa))
+        else:
+            return np.where(x == mean, 1.0, 0.0)
+
+deg2rad = np.pi / 180.0
+
 
 
 parameters = {}

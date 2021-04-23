@@ -26,6 +26,7 @@ TI2 = integrate.quad(test_integrand2, 0, 1)[0]
 TI3 = integrate.quad(test_integrand3, 0, 1)[0]
 
 
+
 # compute integrals with gauss legendre quadrature
 gauss_leg = Gauss_Legendre()
 number_of_points =10

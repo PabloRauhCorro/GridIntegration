@@ -17,6 +17,7 @@ class LebedevAngularIntegration(GridIntegration):
         self.numpoints_degree_dict = lebedev_numpoints_degree()
 
     def get_points(self, num_gridpoints):
+        # points in cartesian coordinates
         degree = self.degree_from_num_gridpoints(num_gridpoints)
         return self.lebedev_grid[degree][:, 0:3]
     

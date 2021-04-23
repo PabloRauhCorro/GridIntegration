@@ -3,7 +3,7 @@ import numpy as np
 from scipy import integrate
 sys.path.append(os.getcwd())
 from Gauss_Laguerre import GaussLaguerre
-from supplementary.von_mises_distribution import von_mises_distr
+from supplementary.distributions import von_mises_distr
 from supplementary.deg2rad import deg2rad
 from tests.num_points_vs_deviation.plot_deviation import plot_results
 from tests.num_points_vs_deviation.write_to_file import write_to_file

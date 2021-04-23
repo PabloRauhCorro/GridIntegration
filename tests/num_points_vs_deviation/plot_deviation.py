@@ -7,6 +7,7 @@ def plot_results(results_dicts, function_labels, description):
     axis1 = fig.add_subplot(121)
     axis1.set_ylabel('deviation in %')
     axis1.set_xlabel('number of gridpoints')
+    axis1.set_ylim(0, 100)
     for i in range(len(function_labels)):
         axis1.plot(results_dicts[i].keys(), results_dicts[i].values(), marker =".",label = function_labels[i])
     axis1.legend() 

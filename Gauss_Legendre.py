@@ -15,7 +15,7 @@ class Gauss_Legendre(GridIntegration):
 
     def get_points(self, num_points, lower_bound, upper_bound):
         points = np.polynomial.legendre.leggauss(num_points)[0]
-        #variable transformation for change of interval [-1,1]
+        #variable transformation for change of interval from [-1,1] to [lower, upper]
         points = (upper_bound-lower_bound)/2 * points + (upper_bound+lower_bound)/2
         return points
 

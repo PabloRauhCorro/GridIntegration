@@ -5,7 +5,7 @@ from scipy.integrate import tplquad
 sys.path.append('..')
 sys.path.append(os.getcwd())
 from Mitchell import Mitchell_Integration
-from supplementary.von_mises_distribution import von_mises_distr
+from supplementary.distributions import von_mises_distr
 from supplementary.deg2rad import deg2rad
 from tests.num_points_vs_deviation.plot_deviation import plot_results
 from tests.num_points_vs_deviation.write_to_file import write_to_file

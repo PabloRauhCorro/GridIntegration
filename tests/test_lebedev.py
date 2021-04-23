@@ -3,7 +3,7 @@ from scipy import integrate
 import numpy as np
 sys.path.append(os.getcwd())
 from Lebedev import LebedevAngularIntegration
-from supplementary.von_mises_distribution import von_mises_distr
+from supplementary.distributions import von_mises_distr, uniform_distr
 from supplementary.deg2rad import deg2rad
 
 
@@ -31,8 +31,10 @@ def test_integrand2(xi, phi, weighted = False):
 
 # f(xi, phi) = Puni(xi)
 def test_integrand3(xi, phi, weighted = False):
-    function = (np.array(xi<0.7) * np.array(xi>0.3)).astype(int)
-    return function if not weighted else int(xi<0.7 and xi>0.3) * np.sin(xi)
+    xi_mean = 45 *deg2rad
+    xi_width = 25 * deg2rad
+    function = uniform_distr(xi, xi_mean, xi_width)
+    return function if not weighted else 1/xi_width * int((xi > xi_mean-0.5*xi_width) and (xi <= xi_mean+0.5*xi_width)) * np.sin(xi)
 
 # f(xi, phi) = Pvon_mises(xi) * P_von_mises(phi)
 def test_integrand4(xi, phi, weighted=False):
@@ -56,7 +58,7 @@ TI4 = integrate.dblquad(test_integrand4, phi_range[0], phi_range[1], lambda phi:
 #θ ξ φ
 # Compute integrals with Lebedev quadrature. The integration ranges are fixed to xi_range and phi_range
 lebedevAngularIntegration = LebedevAngularIntegration()
-num_points = 972
+num_points = 200
 TI0_lebedev = lebedevAngularIntegration.integrate_function(test_integrand0, num_points)
 TI1_lebedev = lebedevAngularIntegration.integrate_function(test_integrand1, num_points)
 TI2_lebedev = lebedevAngularIntegration.integrate_function(test_integrand2, num_points)
